@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+/* This is a test for commit #1 */
+
 namespace TechJobsConsole
 {
     class Program
