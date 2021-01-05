@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 /* This is a test for commit #1 */
+/* 2nd test for correct github email commit */
 
 namespace TechJobsConsole
 {
