@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-/* This is a test for commit #1 */
-/* 2nd test for correct github email commit */
-
 namespace TechJobsConsole
 {
     class Program
@@ -44,7 +41,7 @@ namespace TechJobsConsole
                     else
                     {
                         List<string> results = JobData.FindAll(columnChoice);
-
+                        results.Sort();
                         Console.WriteLine("\n*** All " + columnChoices[columnChoice] + " Values ***");
                         foreach (string item in results)
                         {
@@ -60,13 +57,17 @@ namespace TechJobsConsole
                     // What is their search term?
                     Console.WriteLine("\nSearch term: ");
                     string searchTerm = Console.ReadLine();
+                    searchTerm = searchTerm.ToLower();
 
                     List<Dictionary<string, string>> searchResults;
 
                     // Fetch results
                     if (columnChoice.Equals("all"))
                     {
-                        Console.WriteLine("Search all fields not yet implemented.");
+                        searchResults = JobData.FindByValue(searchTerm);
+                        PrintJobs(searchResults);
+
+                        //Console.WriteLine("Search all fields not yet implemented.");
                     }
                     else
                     {
@@ -121,7 +122,23 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            Console.WriteLine("PrintJobs is not implemented yet");
+            if (someJobs.Count > 0)
+            {
+                foreach (Dictionary<string, string> job in someJobs)
+                {
+                    Console.WriteLine("*****");
+                    foreach (KeyValuePair<string, string> description in job)
+                    {
+                        Console.WriteLine(description.Key + ": " + description.Value);
+                    }
+                    Console.WriteLine("*****\n");
+                }
+            }
+
+            else if (someJobs.Count == 0)
+            {
+                Console.Write("No results\n");
+            }
         }
     }
 }
